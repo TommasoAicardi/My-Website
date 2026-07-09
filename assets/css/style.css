@@ -144,6 +144,7 @@ a:hover, a:focus {
 
 .content {
   max-width: 760px;
+  margin: 0 auto;
   padding: 3rem 4rem;
 }
 
