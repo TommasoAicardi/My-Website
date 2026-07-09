@@ -4,6 +4,7 @@
     "authors": "Tommaso Aicardi and Chloe Papadopoulou and Marco Albertini",
     "venue": "",
     "year": "",
-    "link": "https://osf.io/download/bnurs/"
+    "link": "https://osf.io/download/bnurs/",
+    "abstract": "L’articolo presenta DOEM, un nuovo dataset longitudinale per lo studio della comunicazione politica televisiva in Italia. Il dataset raccoglie le trascrizioni complete di 2.889 episodi del talk show politico Otto e mezzo, trasmesso su La7 tra il 4 aprile 2011 e il 10 giugno 2025. Le trascrizioni sono state prodotte a partire dall’audio degli episodi tramite modelli di automatic speech recognition basati su Whisper-AI e successivamente sottoposte a procedure di pulizia, controllo e normalizzazione. Oltre al testo completo delle puntate, DOEM include metadati sulla data di trasmissione e sugli ospiti presenti. Il paper illustra la struttura del dataset e presenta alcuni esempi di utilizzo per l’analisi della copertura mediatica di eventi politici, dell’attenzione verso specifiche policy issues e dello stile comunicativo degli attori politici. DOEM costituisce una risorsa originale per studi di comunicazione politica, stile della leadership, agenda setting e, piu in generale, promuove l’utilizzo di approcci computazionali e di” text as data” negli studi della comunicaizone politica in Italia."
   }
 ]

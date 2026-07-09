@@ -189,6 +189,27 @@ a:hover, a:focus {
   font-size: 0.9em;
 }
 
+.paper-abstract {
+  margin-top: 0.4em;
+  font-size: 0.9em;
+}
+
+.paper-abstract summary {
+  cursor: pointer;
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.paper-abstract summary:hover {
+  color: var(--accent-hover);
+}
+
+.paper-abstract p {
+  margin: 0.5em 0 0;
+  color: var(--text-secondary);
+  text-align: justify;
+}
+
 .scholar-link {
   margin: 0.25em 0 1em;
 }

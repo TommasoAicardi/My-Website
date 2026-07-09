@@ -27,6 +27,7 @@ def fetch_papers():
             "venue": bib.get("citation") or bib.get("venue", ""),
             "year": bib.get("pub_year", ""),
             "link": filled.get("pub_url") or filled.get("eprint_url") or "",
+            "abstract": bib.get("abstract", "").strip(),
         })
 
     papers.sort(key=lambda p: p.get("year") or "", reverse=True)

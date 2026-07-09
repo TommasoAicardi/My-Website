@@ -57,10 +57,14 @@ document.addEventListener('DOMContentLoaded', function () {
           var link = paper.link
             ? '<a href="' + encodeURI(paper.link) + '" target="_blank" rel="noopener">View ↗</a>'
             : '';
+          var abstract = paper.abstract
+            ? '<details class="paper-abstract"><summary>Abstract</summary><p>' + escapeHtml(paper.abstract) + '</p></details>'
+            : '';
           return '<li class="paper-item">' +
             '<span class="item-title">' + escapeHtml(paper.title || 'Untitled') + '</span>' +
             '<span class="item-meta">' + escapeHtml(meta) + '</span>' +
             link +
+            abstract +
             '</li>';
         }).join('');
       })
