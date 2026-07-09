@@ -180,6 +180,10 @@ a:hover, a:focus {
   gap: 0.25em;
 }
 
+.resource-item a {
+  margin-right: 1em;
+}
+
 .item-title {
   font-weight: 600;
 }
