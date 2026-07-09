@@ -20,11 +20,17 @@ document.addEventListener('DOMContentLoaded', function () {
 
   var themeToggle = document.getElementById('theme-toggle');
   if (themeToggle) {
+    var setIcon = function () {
+      var isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+      themeToggle.textContent = isDark ? '☀️' : '🌙';
+    };
+    setIcon();
     themeToggle.addEventListener('click', function () {
       var root = document.documentElement;
       var next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
       root.setAttribute('data-theme', next);
       localStorage.setItem('theme', next);
+      setIcon();
     });
   }
 
