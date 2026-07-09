@@ -3,40 +3,61 @@ layout: default
 title: Home
 ---
 
+<div class="layout">
+  <aside class="sidebar">
+    <img src="assets/img/FotoCVFull.jpeg" alt="Profile photo" class="profile-photo">
+    <h1 class="site-name">Tommaso Aicardi</h1>
+    <p class="site-role">PhD Student, Bocconi University</p>
 
-<div class="responsive-flex">
-	<div class="left-photo">
-		<img src="assets/img/FotoCVFull.jpeg" alt="Profile photo" class="small-photo">
-	</div>
-	<div class="right-text">
-		<section class="main-section">
-			<h2>About Me</h2>
-			<p>PhD student, Department of Social and Political Science - <em>Bocconi University</em>, Milan, Italy.</p>
-		</section>
-		<section class="main-section">
-			<h2>Research Interests</h2>
-			<p>I am currently interested in understanding how living with a frail family member
-			shapes the health and life trajectories of other household members. More broadly,
-			I would like to explore themes at the intersection of health demography, family
-			sociology, and social stratification, ideally through computational approaches
-			or a life-course perspective.</p>
-		</section>
+    <nav class="main-nav" aria-label="Sections">
+      <button type="button" class="nav-link active" data-section="home" aria-selected="true">Home</button>
+      <button type="button" class="nav-link" data-section="research" aria-selected="false">Research</button>
+    </nav>
 
+    <section class="contact-info">
+      <h2>Contact</h2>
+      <p><strong>Email:</strong> <a href="mailto:tommaso.aicardi2@phd.unibocconi.it">tommaso.aicardi2@phd.unibocconi.it</a></p>
+      <p><strong>Location:</strong> Department of Social and Political Sciences – Università “L. Bocconi”, Via Roentgen 1, 20136 Milan (Italy)</p>
+      <p><strong>Useful links:</strong><br>
+        <a href="https://www.linkedin.com/in/tommaso-aicardi-464ba3249" target="_blank" rel="noopener">LinkedIn</a> |
+        <a href="assets/doc/CV_Aicardi_01_26.pdf" download>CV</a>
+      </p>
+    </section>
 
-<section class="main-section">
-	<h2>Current Projects</h2>
-	<p><strong>Multidimensional Frailty</strong>: work-in-progress publications in the framework of <a href="https://cergas.unibocconi.eu/diff-deploying-intersectionality-framework-study-inequality-among-frail-older-population" target="_blank">Deploying Intersectionality Framework to Study Inequality among Frail Older Population</a> (DIFF) project; together with Prof.Benedetta Pongiglione (University of Pavia), PostDoc Researcher Elisabetta Listorti (SDA Bocconi) and Ph.D. Candidate Gaia Sagantin (Amsterdam UMC).</p>
-	<!-- Add more projects as needed -->
-</section>
+    <button type="button" id="theme-toggle" aria-label="Toggle dark/light mode">Toggle theme</button>
+  </aside>
 
-<section class="main-section">
-	<h2>Contact Information</h2>
-		<p><strong>Email:</strong> <a href="mailto:tommaso.aicardi2@phd.unibocconi.it">tommaso.aicardi2@phd.unibocconi.it</a></p>
-		<p><strong>Location:</strong> Department of Social and Political Sciences – Università “L. Bocconi”, Via Roentgen 1, 20136 Milan (Italy)</p>
-		<p><strong>Useful links:</strong><br>
-			<a href="https://www.linkedin.com/in/tommaso-aicardi-464ba3249" target="_blank">LinkedIn</a> |
-			<a href="assets\doc\CV_Aicardi_01_26.pdf" download>CV</a>
-		</p>
-</section>
+  <main class="content">
+    <section id="home" class="page-section">
+      <h2>About Me</h2>
+      <p>PhD student, Department of Social and Political Science - <em>Bocconi University</em>, Milan, Italy.</p>
 
+      <h2>Research Interests</h2>
+      <p>I am currently interested in understanding how living with a frail family member
+      shapes the health and life trajectories of other household members. More broadly,
+      I would like to explore themes at the intersection of health demography, family
+      sociology, and social stratification, ideally through computational approaches
+      or a life-course perspective.</p>
+    </section>
 
+    <section id="research" class="page-section" hidden>
+      <h2>Published Papers</h2>
+      <p class="scholar-link"><a href="https://scholar.google.com/citations?user=5Oi5SOEAAAAJ" target="_blank" rel="noopener">View full profile on Google Scholar ↗</a></p>
+      <ul class="paper-list" id="paper-list" data-src="assets/data/papers.json">
+        <li class="paper-item paper-loading">Loading publications…</li>
+      </ul>
+
+      <h2>Datasets and Resources</h2>
+      <ul class="resource-list">
+        <li class="resource-item">
+          <span class="item-title">[Placeholder] Dataset or Resource Name</span>
+          <span class="item-meta">Short description of the dataset or resource.</span>
+          <a href="#">Link ↗</a>
+        </li>
+      </ul>
+
+      <h2>Ongoing Projects</h2>
+      <p><strong>Multidimensional Frailty</strong>: work-in-progress publications in the framework of <a href="https://cergas.unibocconi.eu/diff-deploying-intersectionality-framework-study-inequality-among-frail-older-population" target="_blank" rel="noopener">Deploying Intersectionality Framework to Study Inequality among Frail Older Population</a> (DIFF) project; together with Prof.Benedetta Pongiglione (University of Pavia), PostDoc Researcher Elisabetta Listorti (SDA Bocconi) and Ph.D. Candidate Gaia Sagantin (Amsterdam UMC).</p>
+    </section>
+  </main>
+</div>
