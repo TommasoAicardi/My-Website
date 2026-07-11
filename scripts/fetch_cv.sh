@@ -1,22 +1,15 @@
 #!/usr/bin/env bash
-# Fetch the CV PDF from a private GitHub repo and replace the published copy.
-# Requires CV_REPO_TOKEN (a PAT with read access to the CV repo) in the environment.
+# Fetch the CV PDF from the (public) CV repo and replace the published copy.
 set -uo pipefail
 
 REPO="TommasoAicardi/CV"
+BRANCH="master"
 FILE_PATH="main-eng.pdf"
 OUTPUT="assets/doc/CV_Aicardi_01_26.pdf"
-
-if [ -z "${CV_REPO_TOKEN:-}" ]; then
-  echo "CV_REPO_TOKEN not set; keeping existing $OUTPUT"
-  exit 0
-fi
+URL="https://raw.githubusercontent.com/$REPO/$BRANCH/$FILE_PATH"
 
 TMP=$(mktemp)
-STATUS=$(curl -s -o "$TMP" -w "%{http_code}" \
-  -H "Authorization: token $CV_REPO_TOKEN" \
-  -H "Accept: application/vnd.github.v3.raw" \
-  -L "https://api.github.com/repos/$REPO/contents/$FILE_PATH")
+STATUS=$(curl -s -o "$TMP" -w "%{http_code}" -L "$URL")
 
 if [ "$STATUS" != "200" ] || [ ! -s "$TMP" ]; then
   echo "CV fetch failed (HTTP $STATUS); keeping existing $OUTPUT"
