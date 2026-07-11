@@ -1,0 +1,28 @@
+name: Update CV from private repo
+
+on:
+  schedule:
+    - cron: "0 6 * * 2" # every Tuesday at 06:00 UTC
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+jobs:
+  update-cv:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Fetch CV
+        env:
+          CV_REPO_TOKEN: ${{ secrets.CV_REPO_TOKEN }}
+        run: bash scripts/fetch_cv.sh
+
+      - name: Commit changes if any
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add assets/doc/CV_Aicardi_01_26.pdf
+          git diff --cached --quiet || git commit -m "Update CV from private repo"
+          git push
