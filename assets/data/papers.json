@@ -1,10 +1,18 @@
 [
   {
+    "title": "Measuring bio-psycho-social frailty in older adults across multiple surveys and indicators: evidence from Italy for public health policy",
+    "authors": "Tommaso Aicardi and Elisabetta Listorti and Benedetta Pongiglione",
+    "venue": "European Journal of Public Health 36 (4), ckag120, 2026",
+    "year": "2026",
+    "link": "https://academic.oup.com/eurpub/article-pdf/doi/10.1093/eurpub/ckag120/68840481/ckag120.pdf",
+    "abstract": "Detecting and measuring frailty is essential to inform health policy. Numerous frailty tools exist, but their application to population data remains limited. This study focuses on Italy and adopts a policymaker’s perspective to identify practical, nationally applicable tools for bio-psycho-social frailty assessment using existing survey data. Three validated bio-psycho-social indicators—the Tilburg Frailty Indicator (TFI), the Groningen Frailty Indicator (GFI), and the Edmonton Frail Scale (EFS)—were operationalized across four population surveys (SHARE, EU-SILC, EHIS, and AVQ). The study proceeded in three steps: (i) reconstruction of each indicator within each dataset to assess items’ replicability; (ii) validation of reproducible indicators by examining their psychometric properties; (iii) comparison of prevalence and predictive validity across indicators to illustrate their relative strengths and limitations. The GFI was the …"
+  },
+  {
     "title": "DOEM-UNIBO: Un dataset su Otto e mezzo, un talk show politico italiano",
     "authors": "Tommaso Aicardi and Chloe Papadopoulou and Marco Albertini",
     "venue": "",
     "year": "",
-    "link": "https://osf.io/download/bnurs/",
-    "abstract": "L’articolo presenta DOEM, un nuovo dataset longitudinale per lo studio della comunicazione politica televisiva in Italia. Il dataset raccoglie le trascrizioni complete di 2.889 episodi del talk show politico Otto e mezzo, trasmesso su La7 tra il 4 aprile 2011 e il 10 giugno 2025. Le trascrizioni sono state prodotte a partire dall’audio degli episodi tramite modelli di automatic speech recognition basati su Whisper-AI e successivamente sottoposte a procedure di pulizia, controllo e normalizzazione. Oltre al testo completo delle puntate, DOEM include metadati sulla data di trasmissione e sugli ospiti presenti. Il paper illustra la struttura del dataset e presenta alcuni esempi di utilizzo per l’analisi della copertura mediatica di eventi politici, dell’attenzione verso specifiche policy issues e dello stile comunicativo degli attori politici. DOEM costituisce una risorsa originale per studi di comunicazione politica, stile della leadership, agenda setting e, piu in generale, promuove l’utilizzo di approcci computazionali e di” text as data” negli studi della comunicaizone politica in Italia."
+    "link": "https://osf.io/preprints/socarxiv/bnurs",
+    "abstract": "L'articolo presenta DOEM, un nuovo dataset longitudinale per lo studio della comunicazione politica televisiva in Italia. Il dataset raccoglie le trascrizioni complete di 2.889 episodi del talk show politico\\textit {Otto e mezzo}, trasmesso su La7 tra il 4 aprile 2011 e il 10 giugno 2025. Le trascrizioni sono state prodotte a partire dall'audio degli episodi tramite modelli di automatic speech recognition basati su Whisper-AI e successivamente sottoposte a procedure di pulizia, controllo e normalizzazione. Oltre al testo completo delle puntate, DOEM include metadati sulla data di trasmissione e sugli ospiti presenti. Il paper illustra la struttura del dataset e presenta alcuni esempi di utilizzo per l'analisi della copertura mediatica di eventi politici, dell'attenzione verso specifiche policy issues e dello stile comunicativo degli attori politici. DOEM costituisce una risorsa originale per studi di comunicazione politica, stile della leadership, agenda setting e, più in generale, promuove l'utilizzo di approcci computazionali e di\" text as data\" negli studi della comunicaizone politica in Italia."
   }
 ]

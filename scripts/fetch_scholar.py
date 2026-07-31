@@ -6,10 +6,26 @@ Requires: pip install scholarly
 import json
 import pathlib
 
-from scholarly import scholarly
+from scholarly import scholarly, ProxyGenerator
 
 SCHOLAR_USER_ID = "5Oi5SOEAAAAJ"
 OUTPUT_PATH = pathlib.Path(__file__).resolve().parent.parent / "assets" / "data" / "papers.json"
+
+
+def setup_proxy():
+    # Google Scholar blocks requests from GitHub Actions' shared IP ranges.
+    # Routing through a free rotating proxy usually gets past that. If proxy
+    # setup itself fails (e.g. no working free proxies right now), fall back
+    # to a direct connection rather than aborting.
+    try:
+        pg = ProxyGenerator()
+        if pg.FreeProxies():
+            scholarly.use_proxy(pg)
+            print("Using a free rotating proxy for Scholar requests")
+        else:
+            print("No working free proxy found; using a direct connection")
+    except Exception as exc:
+        print(f"Proxy setup failed ({exc}); using a direct connection")
 
 
 def fetch_papers():
@@ -25,7 +41,7 @@ def fetch_papers():
             "title": bib.get("title", "").strip(),
             "authors": bib.get("author", "").strip(),
             "venue": bib.get("citation") or bib.get("venue", ""),
-            "year": bib.get("pub_year", ""),
+            "year": str(bib.get("pub_year", "")).strip(),
             "link": filled.get("pub_url") or filled.get("eprint_url") or "",
             "abstract": bib.get("abstract", "").strip(),
         })
@@ -39,6 +55,7 @@ def main():
     # wrong here, or it comes back empty, keep the existing papers.json as-is
     # rather than overwrite good data with an error or an empty list. Exit 0
     # either way so the scheduled workflow doesn't show a false failure.
+    setup_proxy()
     try:
         papers = fetch_papers()
     except Exception as exc:
