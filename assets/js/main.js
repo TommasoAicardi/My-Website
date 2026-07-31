@@ -58,7 +58,7 @@ document.addEventListener('DOMContentLoaded', function () {
             ? '<a href="' + encodeURI(paper.link) + '" target="_blank" rel="noopener">View ↗</a>'
             : '';
           var abstract = paper.abstract
-            ? '<details class="paper-abstract"><summary>Abstract</summary><p>' + escapeHtml(paper.abstract) + '</p></details>'
+            ? '<p class="paper-abstract">' + escapeHtml(paper.abstract) + '</p>'
             : '';
           return '<li class="paper-item">' +
             '<span class="item-title">' + escapeHtml(paper.title || 'Untitled') + '</span>' +

@@ -3,13 +3,60 @@
 Usage: python scripts/fetch_scholar.py
 Requires: pip install scholarly
 """
+import difflib
 import json
 import pathlib
+import re
 
+import requests
 from scholarly import scholarly, ProxyGenerator
 
 SCHOLAR_USER_ID = "5Oi5SOEAAAAJ"
 OUTPUT_PATH = pathlib.Path(__file__).resolve().parent.parent / "assets" / "data" / "papers.json"
+
+
+def _normalize(text):
+    return re.sub(r"\W+", " ", text or "").strip().lower()
+
+
+def crossref_lookup(title):
+    # Cross-reference Scholar's entry against Crossref (the DOI registry) so
+    # we can link to the publisher's page (via doi.org) instead of whatever
+    # raw URL Scholar happened to index — which is sometimes a direct PDF —
+    # and, when available, pull Crossref's full (untruncated) abstract.
+    try:
+        response = requests.get(
+            "https://api.crossref.org/works",
+            params={"query.bibliographic": title, "rows": 1},
+            timeout=10,
+        )
+        response.raise_for_status()
+        items = json.loads(response.content.decode("utf-8"))["message"]["items"]
+        if not items:
+            return None
+
+        item = items[0]
+        candidate_title = (item.get("title") or [""])[0]
+        similarity = difflib.SequenceMatcher(
+            None, _normalize(title), _normalize(candidate_title)
+        ).ratio()
+        if similarity < 0.9:
+            return None
+
+        doi = item.get("DOI")
+        abstract = item.get("abstract")
+        if abstract:
+            abstract = re.sub(r"<[^>]+>", " ", abstract)
+            abstract = re.sub(r"\s+", " ", abstract).strip()
+            abstract = re.sub(r"^Abstract\s+", "", abstract)
+
+        return {
+            "link": f"https://doi.org/{doi}" if doi else None,
+            "abstract": abstract or None,
+        }
+    except Exception as exc:
+        print(f"Crossref lookup failed for '{title[:60]}...': {exc}")
+        return None
 
 
 def setup_proxy():
@@ -37,13 +84,22 @@ def fetch_papers():
         bib = pub.get("bib", {})
         filled = scholarly.fill(pub)
         bib = filled.get("bib", bib)
+        title = bib.get("title", "").strip()
+        link = filled.get("pub_url") or filled.get("eprint_url") or ""
+        abstract = bib.get("abstract", "").strip()
+
+        crossref = crossref_lookup(title)
+        if crossref:
+            link = crossref["link"] or link
+            abstract = crossref["abstract"] or abstract
+
         papers.append({
-            "title": bib.get("title", "").strip(),
+            "title": title,
             "authors": bib.get("author", "").strip(),
             "venue": bib.get("citation") or bib.get("venue", ""),
             "year": str(bib.get("pub_year", "")).strip(),
-            "link": filled.get("pub_url") or filled.get("eprint_url") or "",
-            "abstract": bib.get("abstract", "").strip(),
+            "link": link,
+            "abstract": abstract,
         })
 
     papers.sort(key=lambda p: p.get("year") or "", reverse=True)
