@@ -55,12 +55,20 @@ def main():
     # wrong here, or it comes back empty, keep the existing papers.json as-is
     # rather than overwrite good data with an error or an empty list. Exit 0
     # either way so the scheduled workflow doesn't show a false failure.
-    setup_proxy()
+    #
+    # Try a direct connection first — it's fast and works fine outside CI.
+    # Only pay the (slow, not-always-successful) cost of scanning free
+    # proxies if the direct attempt actually gets blocked.
     try:
         papers = fetch_papers()
-    except Exception as exc:
-        print(f"Scholar fetch failed ({exc}); keeping existing {OUTPUT_PATH}")
-        return
+    except Exception as direct_exc:
+        print(f"Direct Scholar fetch failed ({direct_exc}); trying a proxy")
+        setup_proxy()
+        try:
+            papers = fetch_papers()
+        except Exception as exc:
+            print(f"Scholar fetch failed ({exc}); keeping existing {OUTPUT_PATH}")
+            return
 
     if not papers:
         print(f"Scholar fetch returned no papers; keeping existing {OUTPUT_PATH}")
